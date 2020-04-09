@@ -2,24 +2,29 @@
 public class Shell {
     public static String sort(int arr[])
     {
+        /** gap = n/2 **/
         int n = arr.length;
 
 
-        for (int leap = n/2; leap > 0; leap /= 2)
+        for (int gap = n/2; gap > 0; gap /= 2)
         {
 
-            for (int i = leap; i < n; i += 1)
+            for (int i = gap; i < n; i += 1)
             {
 
                 int temp = arr[i];
 
 
                 int j;
-                for (j = i; j >= leap && arr[j - leap] > temp; j -= leap)
-                    arr[j] = arr[j - leap];
+                for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
 
+                    System.out.println(String.format("The gap is %s", gap));
+                    arr[j] = arr[j - gap];
 
-                arr[j] = temp;
+                }
+
+                    arr[j] = temp;
+
             }
         }
 
