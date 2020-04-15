@@ -1,44 +1,55 @@
+import java.util.ArrayList;
 
 public class Shell {
-    public static String sort(int arr[])
+
+    public static ArrayList<Integer> sort(int[] arr)
     {
-        /** gap = n/2 **/
-        int n = arr.length;
+        ArrayList<Integer> result = new ArrayList<>();
 
+        int gap = result.size() / 2;
 
-        for (int gap = n/2; gap > 0; gap /= 2)
-        {
+        while (gap > 1){
 
-            for (int i = gap; i < n; i += 1)
-            {
+            shellSort(gap, arr);
 
-                int temp = arr[i];
-
-
-                int j;
-                for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
-
-                    System.out.println(String.format("The gap is %s", gap));
-                    arr[j] = arr[j - gap];
-
-                }
-
-                    arr[j] = temp;
-
-            }
+            gap--;
         }
 
-        String result = "[";
+        insertionSort(arr);
 
-        for(int i = 0; i <arr.length; i++){
-            result += String.format("%s",arr[i]);
-            if (i < arr.length - 1){
-                result += ",";
-            }
-        }
-        result += "]";
 
         return result;
 
+    }
+
+
+    private static void shellSort(int gap, int[] arr){
+
+        
+    }
+
+
+    private static void swap(Integer a, Integer b){
+        Integer temp = a;
+        a = b;
+        b = temp;
+    }
+
+    private static void insertionSort(int arr[])
+    {
+        int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+            int key = arr[i];
+            int j = i - 1;
+
+            /* Move elements of arr[0..i-1], that are
+               greater than key, to one position ahead
+               of their current position */
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
     }
 }
